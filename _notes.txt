@@ -1,0 +1,10 @@
+
+npm install convex
+npx convex dev --once --configure=new
+
+
+npm install @clerk/nextjs
+
+
+● Bash(cd "C:\Users\lkarw\OneDrive\Desktop\py\claude\fintech-banking" && npx shadcn-ui@latest add button --yes 2>&1 | tail -20)
+cd "C:\Users\lkarw\OneDrive\Desktop\py\claude\fintech-banking" && npx shadcn@latest add button card --yes 2>&1 | tail -30
