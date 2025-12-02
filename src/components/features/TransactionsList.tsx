@@ -41,38 +41,34 @@ export function TransactionsList({
 
   return (
     <Card className="bg-slate-800 border-slate-700">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <TrendingUp className="w-5 h-5" />
-          {title}
-        </CardTitle>
-        <CardDescription>Your recent transactions</CardDescription>
+      <CardHeader className="pb-3">
+        <CardTitle className="text-sm">{title}</CardTitle>
       </CardHeader>
       <CardContent>
         {displayedTransactions.length === 0 ? (
-          <p className="text-slate-400 text-center py-4">No transactions yet</p>
+          <p className="text-slate-400 text-center py-4 text-sm">No transactions yet</p>
         ) : (
-          <div className="space-y-3">
+          <div className="space-y-2">
             {displayedTransactions.map((transaction) => (
               <div
                 key={transaction.id}
-                className="flex justify-between items-center p-3 bg-slate-700 rounded-lg hover:bg-slate-600 transition"
+                className="flex justify-between items-center p-2.5 bg-slate-700/50 rounded-lg"
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2.5 flex-1">
                   {getTransactionIcon(transaction)}
-                  <div>
-                    <p className="font-semibold capitalize">
+                  <div className="min-w-0">
+                    <p className="font-medium text-sm capitalize">
                       {transaction.type}
                     </p>
-                    <p className="text-slate-400 text-sm">
+                    <p className="text-slate-400 text-xs truncate">
                       {transaction.description}
                     </p>
                   </div>
                 </div>
 
-                <div className="text-right">
+                <div className="text-right ml-2">
                   <p
-                    className={`font-bold ${
+                    className={`font-bold text-sm ${
                       transaction.type === "deposit"
                         ? "text-green-400"
                         : "text-red-400"
@@ -80,9 +76,6 @@ export function TransactionsList({
                   >
                     {transaction.type === "deposit" ? "+" : "-"}
                     ${transaction.amount.toFixed(2)}
-                  </p>
-                  <p className={`text-xs ${getStatusColor(transaction.status)}`}>
-                    {transaction.status}
                   </p>
                 </div>
               </div>
