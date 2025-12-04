@@ -26,10 +26,8 @@ export const createAccount = mutation({
 export const getUserAccounts = query({
   args: { userId: v.string() },
   handler: async (ctx, args) => {
-    return await ctx.db
-      .query("accounts")
-      .withIndex("by_userId", (q) => q.eq("userId", args.userId))
-      .collect();
+    const accounts = await ctx.db.query("accounts").collect();
+    return accounts.filter((account) => account.userId === args.userId);
   },
 });
 
@@ -57,11 +55,9 @@ export const updateAccountBalance = mutation({
 export const getTotalBalance = query({
   args: { userId: v.string() },
   handler: async (ctx, args) => {
-    const accounts = await ctx.db
-      .query("accounts")
-      .withIndex("by_userId", (q) => q.eq("userId", args.userId))
-      .collect();
+    const accounts = await ctx.db.query("accounts").collect();
+    const userAccounts = accounts.filter((account) => account.userId === args.userId);
 
-    return accounts.reduce((total, account) => total + account.balance, 0);
+    return userAccounts.reduce((total, account) => total + account.balance, 0);
   },
 });

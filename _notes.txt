@@ -10,7 +10,10 @@ npm install @clerk/nextjs
 cd "C:\Users\lkarw\OneDrive\Desktop\py\claude\fintech-banking" && npx shadcn@latest add button card --yes 2>&1 | tail -30
 ● Bash(cd "C:\Users\lkarw\OneDrive\Desktop\py\claude\fintech-banking" && npx shadcn@latest add tabs --yes 2>&1 | grep -E "(✔|Created)" | head -5)
 
-
-
+{
+npx convex dev --once --codegen
+npx convex dev --once --codegen enable
+npx convex codegen
+}
 
 

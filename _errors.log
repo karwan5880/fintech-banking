@@ -1,27 +1,16 @@
-Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview
-
-Clerk: The prop "afterSignInUrl" is deprecated and should be replaced with the new "fallbackRedirectUrl" or "forceRedirectUrl" props instead. Learn more: https://clerk.com/docs/guides/custom-redirects#redirect-url-props
-
-
-GET http://localhost:3001/sign-up/SignUp_clerk_catchall_check_1764665294196 404 (Not Found)
-
-Uncaught (in promise) Error: 
-Clerk: The <SignUp/> component is not configured correctly. The most likely reasons for this error are:
-
-1. The "/sign-up" route is not a catch-all route.
-It is recommended to convert this route to a catch-all route, eg: "/sign-up/[[...rest]]/page.tsx". Alternatively, you can update the <SignUp/> component to use hash-based routing by setting the "routing" prop to "hash".
-
-2. The <SignUp/> component is mounted in a catch-all route, but all routes under "/sign-up" are protected by the middleware.
-To resolve this, ensure that the middleware does not protect the catch-all route or any of its children. If you are using the "createRouteMatcher" helper, consider adding "(.*)" to the end of the route pattern, eg: "/sign-up(.*)". For more information, see: https://clerk.com/docs/reference/nextjs/clerk-middleware#create-route-matcher
-
-
-
-
-
-
-
-
-
-
-
-
+2025-12-04T07:10:50.093Z  ▲ Next.js 16.0.6 (Turbopack)
+2025-12-04T07:10:50.094Z
+2025-12-04T07:10:50.102Z  ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+2025-12-04T07:10:50.125Z  Creating an optimized production build ...
+2025-12-04T07:10:58.999Z  ✓ Compiled successfully in 8.3s
+2025-12-04T07:10:59.001Z  Running TypeScript ...
+2025-12-04T07:11:03.369Z  Collecting page data using 1 worker ...
+2025-12-04T07:11:03.783Z  Generating static pages using 1 worker (0/7) ...
+2025-12-04T07:11:04.290Z  Error occurred prerendering page "/_not-found". Read more: https://nextjs.org/docs/messages/prerender-error
+2025-12-04T07:11:04.293Z  Error: @clerk/clerk-react: Missing publishableKey. You can get your key at https://dashboard.clerk.com/last-active?path=api-keys.
+2025-12-04T07:11:04.293Z  at ignore-listed frames {
+2025-12-04T07:11:04.293Z  digest: '136016534'
+2025-12-04T07:11:04.293Z  }
+2025-12-04T07:11:04.293Z  Export encountered an error on /_not-found/page: /_not-found, exiting the build.
+2025-12-04T07:11:04.306Z  ⨯ Next.js build worker exited with code: 1 and signal: null
+2025-12-04T07:11:04.341Z  Error: Command "npm run build" exited with 1
