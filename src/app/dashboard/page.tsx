@@ -120,9 +120,9 @@ export default function DashboardPage() {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white pb-24">
-      {/* Mobile Header */}
+      {/* Header */}
       <div className="bg-slate-900/50 backdrop-blur p-4 sticky top-0 z-40">
-        <div className="flex justify-between items-center max-w-md mx-auto">
+        <div className="flex justify-between items-center max-w-5xl mx-auto px-2 md:px-4">
           <div>
             <h1 className="text-xl font-bold">Hi, {user?.firstName}</h1>
             <p className="text-xs text-slate-400">Welcome back</p>
@@ -138,76 +138,85 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* Mobile Content */}
-      <div className="max-w-md mx-auto px-4 py-4 space-y-4">
-        {/* Main Balance Card */}
-        <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl p-6 text-white shadow-lg">
-          <div className="flex justify-between items-start mb-8">
-            <div>
-              <p className="text-sm opacity-75">Total Balance</p>
-              <div className="flex items-center gap-2 mt-1">
-                {showBalance ? (
-                  <h2 className="text-3xl font-bold">${totalBalance.toFixed(2)}</h2>
-                ) : (
-                  <h2 className="text-3xl font-bold">••••••</h2>
-                )}
-                <button
-                  onClick={() => setShowBalance(!showBalance)}
-                  className="opacity-75 hover:opacity-100"
-                >
-                  {showBalance ? (
-                    <Eye className="w-5 h-5" />
-                  ) : (
-                    <EyeOff className="w-5 h-5" />
-                  )}
-                </button>
+      {/* Responsive Content */}
+      <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8 py-4">
+        <div className="grid gap-4 md:gap-6 md:grid-cols-[2fr,1.4fr] items-start">
+          {/* Left column: balance, stats, actions */}
+          <div className="space-y-4">
+            {/* Main Balance Card */}
+            <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl p-6 text-white shadow-lg">
+              <div className="flex justify-between items-start mb-8">
+                <div>
+                  <p className="text-sm opacity-75">Total Balance</p>
+                  <div className="flex items-center gap-2 mt-1">
+                    {showBalance ? (
+                      <h2 className="text-3xl md:text-4xl font-bold">
+                        ${totalBalance.toFixed(2)}
+                      </h2>
+                    ) : (
+                      <h2 className="text-3xl md:text-4xl font-bold">••••••</h2>
+                    )}
+                    <button
+                      onClick={() => setShowBalance(!showBalance)}
+                      className="opacity-75 hover:opacity-100"
+                    >
+                      {showBalance ? (
+                        <Eye className="w-5 h-5" />
+                      ) : (
+                        <EyeOff className="w-5 h-5" />
+                      )}
+                    </button>
+                  </div>
+                </div>
+                <Wallet className="w-8 h-8 md:w-10 md:h-10 opacity-75" />
+              </div>
+              <p className="text-xs opacity-75">Across all accounts</p>
+            </div>
+
+            {/* Quick Stats */}
+            <div className="grid grid-cols-2 gap-3">
+              <div className="bg-slate-800 rounded-xl p-4 border border-slate-700">
+                <p className="text-xs text-slate-400 mb-1">Cards</p>
+                <p className="text-2xl md:text-3xl font-bold text-blue-400">
+                  {mockCards.length}
+                </p>
+              </div>
+              <div className="bg-slate-800 rounded-xl p-4 border border-slate-700">
+                <p className="text-xs text-slate-400 mb-1">Alerts</p>
+                <p className="text-2xl md:text-3xl font-bold text-yellow-400">
+                  {mockNotifications.filter((n) => !n.read).length}
+                </p>
               </div>
             </div>
-            <Wallet className="w-8 h-8 opacity-75" />
-          </div>
-          <p className="text-xs opacity-75">Across all accounts</p>
-        </div>
 
-        {/* Quick Stats */}
-        <div className="grid grid-cols-2 gap-3">
-          <div className="bg-slate-800 rounded-xl p-4 border border-slate-700">
-            <p className="text-xs text-slate-400 mb-1">Cards</p>
-            <p className="text-2xl font-bold text-blue-400">{mockCards.length}</p>
+            {/* Quick Actions */}
+            <div className="grid grid-cols-2 gap-3">
+              <Button
+                onClick={() => router.push("/dashboard/send")}
+                className="h-20 md:h-24 bg-green-600 hover:bg-green-700 flex flex-col items-center gap-2"
+              >
+                <Send className="w-6 h-6" />
+                <span className="text-xs md:text-sm">Send Money</span>
+              </Button>
+              <Button
+                onClick={() => router.push("/dashboard/cards")}
+                className="h-20 md:h-24 bg-purple-600 hover:bg-purple-700 flex flex-col items-center gap-2"
+              >
+                <CreditCard className="w-6 h-6" />
+                <span className="text-xs md:text-sm">My Cards</span>
+              </Button>
+            </div>
           </div>
-          <div className="bg-slate-800 rounded-xl p-4 border border-slate-700">
-            <p className="text-xs text-slate-400 mb-1">Alerts</p>
-            <p className="text-2xl font-bold text-yellow-400">
-              {mockNotifications.filter((n) => !n.read).length}
-            </p>
+
+          {/* Right column: recent activity */}
+          <div className="mt-4 md:mt-0">
+            <h3 className="text-lg font-bold mb-3">Recent Activity</h3>
+            <TransactionsList transactions={mockTransactions} limit={5} />
           </div>
-        </div>
-
-        {/* Quick Actions */}
-        <div className="grid grid-cols-2 gap-3">
-          <Button
-            onClick={() => router.push("/dashboard/send")}
-            className="h-20 bg-green-600 hover:bg-green-700 flex flex-col items-center gap-2"
-          >
-            <Send className="w-6 h-6" />
-            <span className="text-xs">Send Money</span>
-          </Button>
-          <Button
-            onClick={() => router.push("/dashboard/cards")}
-            className="h-20 bg-purple-600 hover:bg-purple-700 flex flex-col items-center gap-2"
-          >
-            <CreditCard className="w-6 h-6" />
-            <span className="text-xs">My Cards</span>
-          </Button>
-        </div>
-
-        {/* Recent Transactions */}
-        <div className="mt-6">
-          <h3 className="text-lg font-bold mb-3">Recent Activity</h3>
-          <TransactionsList transactions={mockTransactions} limit={5} />
         </div>
       </div>
 
-      {/* Mobile Bottom Navigation */}
+      {/* Bottom Navigation (mobile only) */}
       <MobileNav />
     </main>
   );

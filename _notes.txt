@@ -17,3 +17,11 @@ npx convex codegen
 }
 
 
+
+
+ideas:
+- fintech banking app
+- hotel recommendation app
+- fire disaster emergency app
+
+

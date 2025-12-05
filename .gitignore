@@ -23,6 +23,8 @@
 # misc
 .DS_Store
 *.pem
+# files starting with underscore
+_*
 
 # debug
 npm-debug.log*
